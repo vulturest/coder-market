@@ -4,4 +4,4 @@ from django.apps import AppConfig
 
 
 class CoderMarketWebConfig(AppConfig):
-    name = 'coder_market_web'
+    name = 'coder_market.coder_market_web'

@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'coder_market_web',
+    'coder_market',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'coder_market',
         'USER':'root',
-        'PASSWORD':'',
+        'PASSWORD':'root',
         'HOST':'localhost',
         'PORT':'3306',
     }
