@@ -1,14 +1,15 @@
 from __future__ import unicode_literals
-
+from django.contrib.auth.models import User
 from django.db import models
 
 
 # Create your models here.
+'''
 class user_login(models.Model):
     username = models.CharField(max_length=30)
     password = models.CharField(max_length=30)
     identity = models.CharField(max_length=15)
-
+'''
 
 class publisher(models.Model):
     username = models.CharField(max_length=30)
@@ -40,3 +41,8 @@ class project(models.Model):
     project_receiver = models.CharField(max_length=30)
     project_manager = models.CharField(max_length=30)
     tag = models.CharField(max_length=50)
+
+
+class UserProfile(models.Model):
+    identity = models.CharField(max_length=15)
+    user = models.OneToOneField(User, unique=True)
