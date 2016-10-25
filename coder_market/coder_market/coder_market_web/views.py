@@ -14,9 +14,5 @@ def register(request):
         reg.username=request.POST['register_username']
         reg.password=request.POST['register_password']
         reg.save()
-        profile = UserProfile()
-        profile.user_id=reg.id
-        profile.identity = request.POST.get('register_identity','')
-        profile.save()
         return HttpResponse("run!")
     return render(request,'register.html',{})

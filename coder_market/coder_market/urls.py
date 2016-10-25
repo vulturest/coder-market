@@ -17,10 +17,11 @@ from coder_market_web.views import *
 from django.conf.urls import url
 from django.contrib import admin
 
-admin.autodiscover()
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^hello',helloworld),
     url(r'^register',register)
 ]
+admin.autodiscover()
