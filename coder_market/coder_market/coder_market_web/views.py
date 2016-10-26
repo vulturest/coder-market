@@ -1,3 +1,4 @@
+#coding=utf8
 import django.contrib.auth
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render
@@ -22,7 +23,7 @@ def register(request):
         pro = UserProfile(user_id=reg.id)
         pro.identity = request.POST['register_identity']
         pro.save()
-        return HttpResponse("run!")
+        return HttpResponseRedirect('/login')
     return render(request, 'register.html', {})
 
 
@@ -35,7 +36,7 @@ def login(request):
             django.contrib.auth.login(request, user)
             return HttpResponseRedirect('/hello')
         else:
-            return HttpResponse('fail to login')
+            return render(request,'login.html',{'error':'你输入了错误的账号或者密码'})
     return render(request, 'login.html', {})
 
 
