@@ -1,7 +1,9 @@
 from __future__ import unicode_literals
+
+from django.contrib import admin
 from django.contrib.auth.models import User
 from django.db import models
-from django.contrib import admin
+
 # Create your models here.
 '''
 class user_login(models.Model):
@@ -16,11 +18,13 @@ class identity(models.Model):
     iden = models.CharField(max_length=10)
 '''
 
+
 class publisher(models.Model):
     username = models.CharField(max_length=30)
     order_project = models.IntegerField()
     presonal_information = models.CharField(max_length=100)
     accept_information = models.TextField()
+
 
 
 class receiver(models.Model):
@@ -48,11 +52,11 @@ class project(models.Model):
     tag = models.CharField(max_length=50)
 
 
-
 class UserProfile(models.Model):
-    #user = models.ForeignKey(User, unique=True, verbose_name='profile')
+    # user = models.ForeignKey(User, unique=True, verbose_name='profile')
     user = models.OneToOneField(User, unique=True)
     identity = models.CharField(max_length=15)
+
 
 admin.site.register(publisher)
 admin.site.register(receiver)

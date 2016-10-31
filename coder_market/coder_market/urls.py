@@ -20,6 +20,7 @@ from coder_market_web.views import helloworld, register, login, logout
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$',helloworld),
     url(r'^hello', helloworld),
     url(r'^register', register),
     url(r'^login/', login),

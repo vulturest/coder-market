@@ -19,6 +19,7 @@ def register(request):
         reg = User()
         reg.username = request.POST['register_username']
         reg.set_password(request.POST['register_password'])
+        reg.email = request.POST['register_email']
         reg.save()
         pro = UserProfile(user_id=reg.id)
         pro.identity = request.POST['register_identity']
