@@ -50,6 +50,7 @@ class project(models.Model):
     project_receiver = models.CharField(max_length=30)
     project_manager = models.CharField(max_length=30)
     tag = models.CharField(max_length=50)
+    need_receiver_num = models.IntegerField()
 
 
 class UserProfile(models.Model):
