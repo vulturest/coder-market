@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from coder_market_web.views import helloworld, register, login, logout
+from coder_market_web.views import helloworld, register, login, logout,newproject
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^hello', helloworld),
     url(r'^register', register),
     url(r'^login/', login),
-    url(r'^logout/', logout)
+    url(r'^logout/', logout),
+    url(r'^newproject/',newproject)
 ]
 admin.autodiscover()

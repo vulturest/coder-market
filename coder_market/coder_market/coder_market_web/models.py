@@ -5,25 +5,15 @@ from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
-'''
-class user_login(models.Model):
-    username = models.CharField(max_length=30)
-    password = models.CharField(max_length=30)
-    identity = models.CharField(max_length=15)
-'''
-
-'''
-class identity(models.Model):
-    username = models.ForeignKey(User)
-    iden = models.CharField(max_length=10)
-'''
-
 
 class publisher(models.Model):
     username = models.CharField(max_length=30)
     order_project = models.IntegerField()
     presonal_information = models.CharField(max_length=100)
     accept_information = models.TextField()
+
+    def __unicode__(self):
+        return self.username
 
 
 
@@ -33,6 +23,8 @@ class receiver(models.Model):
     presonal_information = models.CharField(max_length=100)
     tag = models.CharField(max_length=50)
     accept_information = models.TextField()
+    def __unicode__(self):
+        return self.username
 
 
 class manager(models.Model):
@@ -41,16 +33,20 @@ class manager(models.Model):
     presonal_information = models.CharField(max_length=100)
     tag = models.CharField(max_length=50)
     accept_information = models.TextField()
+    def __unicode__(self):
+        return self.username
 
 
 class project(models.Model):
-    number = models.IntegerField()
+    title = models.CharField(max_length=50)
     project_publisher = models.CharField(max_length=30)
     project_content = models.TextField()
-    project_receiver = models.CharField(max_length=30)
+    project_receiver = models.CharField(max_length=100)
     project_manager = models.CharField(max_length=30)
     tag = models.CharField(max_length=50)
     need_receiver_num = models.IntegerField()
+    def __unicode__(self):
+        return self.title
 
 
 class UserProfile(models.Model):
@@ -58,6 +54,8 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, unique=True)
     identity = models.CharField(max_length=15)
 
+    def __unicode__(self):
+        return self.identity
 
 admin.site.register(publisher)
 admin.site.register(receiver)

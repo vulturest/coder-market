@@ -22,7 +22,7 @@ def register(request):
         reg.email = request.POST['register_email']
         reg.save()
         pro = UserProfile(user_id=reg.id)
-        pro.identity = request.POST['register_identity']
+        pro.identity = request.POST['checked']
         pro.save()
         return HttpResponseRedirect('/login')
     return render(request, 'register.html', {})
@@ -30,7 +30,6 @@ def register(request):
 
 def login(request):
     if request.method == "POST":
-        print request.POST['login_username'], request.POST['login_password']
         user = django.contrib.auth.authenticate(username=request.POST['login_username'],
                                                 password=request.POST['login_password'])
         if user is not None:
@@ -44,3 +43,26 @@ def login(request):
 def logout(request):
     django.contrib.auth.logout(request)
     return HttpResponse("success to logout")
+
+def newproject(request):
+    if request.method == "POST":
+        new_p = project()
+        new_p.title = request.POST['project_title']
+        new_p.need_receiver_num = request.POST['project_need_num']
+        new_p.tag = request.POST['tag']
+        new_p.project_content = request.POST['content']
+        new_p.save()
+        return HttpResponseRedirect('/hello')
+    else:
+        '''
+        记得区分身份再渲染模板
+        '''
+        if not request.user.is_authenticated():
+            return render(request,'login.html',{'error':'请您先登录'})
+        else:
+            profile = request.user.userprofile
+            if profile.identity == 'customer':
+                return render(request,'newproject.html',{})
+            else:
+                return HttpResponseRedirect('/hello')
+
