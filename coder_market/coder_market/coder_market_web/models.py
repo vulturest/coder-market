@@ -8,9 +8,9 @@ from django.db import models
 
 class publisher(models.Model):
     username = models.CharField(max_length=30)
-    order_project = models.IntegerField()
+    order_project = models.CharField(max_length=200,null=True)
     presonal_information = models.CharField(max_length=100)
-    accept_information = models.TextField()
+    accept_information = models.TextField(null=True)
 
     def __unicode__(self):
         return self.username
@@ -19,20 +19,20 @@ class publisher(models.Model):
 
 class receiver(models.Model):
     username = models.CharField(max_length=30)
-    get_project = models.IntegerField()
+    get_project = models.CharField(max_length=200,null=True)
     presonal_information = models.CharField(max_length=100)
     tag = models.CharField(max_length=50)
-    accept_information = models.TextField()
+    accept_information = models.TextField(null=True)
     def __unicode__(self):
         return self.username
 
 
 class manager(models.Model):
     username = models.CharField(max_length=30)
-    manage_project = models.IntegerField()
+    manage_project = models.CharField(max_length=200,null=True)
     presonal_information = models.CharField(max_length=100)
     tag = models.CharField(max_length=50)
-    accept_information = models.TextField()
+    accept_information = models.TextField(null=True)
     def __unicode__(self):
         return self.username
 
@@ -41,8 +41,8 @@ class project(models.Model):
     title = models.CharField(max_length=50)
     project_publisher = models.CharField(max_length=30)
     project_content = models.TextField()
-    project_receiver = models.CharField(max_length=100)
-    project_manager = models.CharField(max_length=30)
+    project_receiver = models.CharField(max_length=100,null=True)
+    project_manager = models.CharField(max_length=30,null=True)
     tag = models.CharField(max_length=50)
     need_receiver_num = models.IntegerField()
     def __unicode__(self):

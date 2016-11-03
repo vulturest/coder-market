@@ -10,28 +10,40 @@
     <table>
         <tr>
             <td><label for="txtname"> 账号名:</label></td>
-            <td><input type="text" name="register_username" /></td>
+            <td><input type="text" name="register_username"/></td>
         </tr>
         <tr>
             <td><label for="txtpswd">密码:</label></td>
-            <td><input type="password" name="register_password" /></td>
+            <td><input type="password" name="register_password"/></td>
         </tr>
         <tr>
             <td>
-            用户类型：
-            <input type="radio" checked="checked" name="checked" value="customer" />发布需求方
-            <input type="radio" name="checked" value="program" />        开发方
-            <input type="radio" name="checked" value="manager" />        项目管理方
+                用户类型：
+                <input type="radio" checked="checked" name="checked" value="customer"/>发布需求方
+                <input type="radio" name="checked" value="program"/> 开发方
+                <input type="radio" name="checked" value="manager"/> 项目管理方
             </td>
         </tr>
         <tr>
             <td><label for="email">Email:</label></td>
-            <td><input type="text" name="register_email" /></td>
+            <td><input type="text" name="register_email"/></td>
+        </tr>
+        <tr>
+            <td>
+                个人简介：<br>
+            <td><input type="text" name="register_information"/></td>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                个人标签，用逗号分开，可不填<br>
+            <td><input type="text" name="register_tag"/></td>
+            </td>
         </tr>
         <tr>
             <td colspan=2>
-                <input type="reset" />
-                <input type="submit" />
+                <input type="reset"/>
+                <input type="submit"/>
             </td>
         </tr>
     </table>

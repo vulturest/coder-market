@@ -6,5 +6,9 @@
 </head>
 <body>
 <h1>hello,{{label}}</h1>
+{% if request.user.username == 'chuxiuhong' %}
+英雄一朝拔剑起，又是苍生十年劫
+    {{ request.user.id  }}
+{% endif %}
 </body>
 </html>

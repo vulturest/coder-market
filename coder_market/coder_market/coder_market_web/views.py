@@ -1,6 +1,6 @@
-#coding=utf8
+# coding=utf8
 import django.contrib.auth
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 from models import *
@@ -24,8 +24,28 @@ def register(request):
         pro = UserProfile(user_id=reg.id)
         pro.identity = request.POST['checked']
         pro.save()
+        if request.POST['checked'] == 'customer':
+            p = publisher()
+            p.username = request.POST['register_username']
+            p.presonal_information = request.POST['register_information']
+            p.save()
+        elif request.POST['checked'] == 'program':
+            p = receiver()
+            p.username = request.POST['register_username']
+            p.presonal_information = request.POST['register_information']
+            p.tag = request.POST['register_tag']
+            p.save()
+        elif request.POST['checked'] == 'manager':
+            p = manager()
+            p.username = request.POST['register_username']
+            p.presonal_information = request.POST['register_information']
+            p.tag = request.POST['register_tag']
+            p.save()
+
         return HttpResponseRedirect('/login')
-    return render(request, 'register.html', {})
+    else:
+        return render(request, 'register.html', {})
+
 
 
 def login(request):
@@ -36,13 +56,14 @@ def login(request):
             django.contrib.auth.login(request, user)
             return HttpResponseRedirect('/hello')
         else:
-            return render(request,'login.html',{'error':'你输入了错误的账号或者密码'})
+            return render(request, 'login.html', {'error': '你输入了错误的账号或者密码'})
     return render(request, 'login.html', {})
 
 
 def logout(request):
     django.contrib.auth.logout(request)
     return HttpResponse("success to logout")
+
 
 def newproject(request):
     if request.method == "POST":
@@ -58,11 +79,10 @@ def newproject(request):
         记得区分身份再渲染模板
         '''
         if not request.user.is_authenticated():
-            return render(request,'login.html',{'error':'请您先登录'})
+            return render(request, 'login.html', {'error': '请您先登录'})
         else:
             profile = request.user.userprofile
             if profile.identity == 'customer':
-                return render(request,'newproject.html',{})
+                return render(request, 'newproject.html', {})
             else:
                 return HttpResponseRedirect('/hello')
-
