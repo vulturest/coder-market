@@ -45,6 +45,8 @@ class project(models.Model):
     project_manager = models.CharField(max_length=30,null=True)
     tag = models.CharField(max_length=50)
     need_receiver_num = models.IntegerField()
+    status = models.IntegerField()
+    enroll = models.TextField(null=True)
     def __unicode__(self):
         return self.title
 

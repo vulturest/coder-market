@@ -47,7 +47,6 @@ def register(request):
         return render(request, 'register.html', {})
 
 
-
 def login(request):
     if request.method == "POST":
         user = django.contrib.auth.authenticate(username=request.POST['login_username'],
@@ -72,6 +71,8 @@ def newproject(request):
         new_p.need_receiver_num = request.POST['project_need_num']
         new_p.tag = request.POST['tag']
         new_p.project_content = request.POST['content']
+        new_p.project_publisher = request.user.username
+        new_p.status = 0  # 待领取状态
         new_p.save()
         return HttpResponseRedirect('/hello')
     else:
@@ -86,3 +87,23 @@ def newproject(request):
                 return render(request, 'newproject.html', {})
             else:
                 return HttpResponseRedirect('/hello')
+
+
+def project_view(request):
+    if request.method == 'POST':
+        pass
+    else:
+        project_num = int(request.path.split('/')[-1])
+        try:
+            this_project = project.objects.get(need_receiver_num=project_num)
+            content_dict = {'title': this_project.title, 'content': this_project.project_content}
+            if this_project.status == 0:
+                content_dict['status']='招聘中'
+            elif this_project.status == 1:
+                content_dict['status'] = '已经开始'
+            content_dict['publisher'] = this_project.project_publisher
+            content_dict['tag'] = this_project.tag
+            return render(request, 'project.html', content_dict)
+        except project.DoesNotExist:
+            return render(request, 'project.html',
+                          {'title': '没有相应的项目'})
