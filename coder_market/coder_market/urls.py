@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^login/', login),
     url(r'^logout/', logout),
     url(r'^newproject/',newproject),
-    url(r'^project/\d+',project_view)
+    url(r'^project/\d+',project_view),
+    url(r'^homepage/',homepage)
 ]
 admin.autodiscover()
